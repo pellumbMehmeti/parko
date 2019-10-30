@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "922189601052",
+    "firebase_url": "https://parko-4148f.firebaseio.com",
+    "project_id": "parko-4148f",
+    "storage_bucket": "parko-4148f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922189601052:android:f357dd3f931f663e",
+        "android_client_info": {
+          "package_name": "com.example.parko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922189601052-a2fn5u55j1a79t8du8iuqlqom6o9avb8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO9I5ezE4q8Ja_RmMbCddphlMA9E9NUcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922189601052-a2fn5u55j1a79t8du8iuqlqom6o9avb8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

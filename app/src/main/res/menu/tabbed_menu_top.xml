@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home_frag_call"
+        android:icon="@drawable/list"
+        android:title="@string/lista_help"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/map_frag_call"
+        android:icon="@drawable/maps"
+        android:title="@string/harta_top_menu"
+        android:visible="true"
+        app:showAsAction="always" />
+</menu>

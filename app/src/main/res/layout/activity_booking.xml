@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".BookingActivity">
+
+    <Button
+        android:id="@+id/date_picker_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:background="@color/colorAccent"
+        android:text="DATE"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/time_picker_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:text="Time"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker_btn" />
+
+    <TextView
+        android:id="@+id/book_date_text"
+        android:layout_width="315dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="96dp"
+        android:text="Pick a date"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/date_picker_btn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/book_time_text"
+        android:layout_width="315dp"
+        android:layout_height="48dp"
+        android:text="Pick time"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/time_picker_btn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_date_text" />
+
+    <EditText
+        android:id="@+id/car_plates_txt"
+        android:layout_width="315dp"
+        android:layout_height="48dp"
+        android:text="Your car plates"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_time_text" />
+
+    <Button
+        android:id="@+id/reserve_parking_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_plates_txt" />
+
+    <Button
+        android:id="@+id/button_checkin_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:text="Check in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_parking_btn" />
+
+    <Button
+        android:id="@+id/button_checkout_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="check out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_checkin_time"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_parking_btn" />
+
+    <TextView
+        android:id="@+id/calculated_price_text"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_parking_btn" />
+
+    <TextView
+        android:id="@+id/euro_symbol"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="72dp"
+        android:text="$"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/calculated_price_text"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_parking_btn" />
+
+    <Button
+        android:id="@+id/finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        tools:layout_editor_absoluteX="236dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <EditText
+        android:id="@+id/plate_number_edit"
+        android:layout_width="366dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="172dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Tabelat e kerrit"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculated_price_text"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

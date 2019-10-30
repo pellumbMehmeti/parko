@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/single_parking_grid_card"
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                app:layout_constraintBottom_toTopOf="@+id/free_places_grid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.041"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/parking_grid_name"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/location_icon" />
+
+            <TextView
+                android:id="@+id/free_places_grid"
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+                android:text="Free places:"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.051"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/street_adr" />
+
+            <TextView
+                android:id="@+id/nr_places_grid"
+                android:layout_width="59dp"
+                android:layout_height="22dp"
+                android:text="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.346"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/street_adr" />
+
+            <TextView
+                android:id="@+id/parking_grid_name"
+                android:layout_width="159dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="8dp"
+                android:text="Parking Name"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/street_adr"
+                android:layout_width="129dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/parking_grid_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
