@@ -21,7 +21,7 @@
         android:id="@+id/emps_help_list"
         android:layout_width="408dp"
         android:layout_height="39dp"
-        android:text="Zgjedh punetoret nga lista"
+        android:text="Zgjedhni punëtorët nga lista e mëposhtme dhe regjistroni apo fshini nga parkingu sipas nevojës."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -6,13 +6,16 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -20,67 +23,142 @@
 
                 <Button
                     android:id="@+id/arrive_time_btn"
-                    android:layout_width="85dp"
-                    android:layout_height="45dp"
-                    android:text="CHECK IN"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/expected_arrival"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="HYRJA"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/departure_time_btn"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/registration_plates_txt"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/departure_time_btn"
-                    android:layout_width="85dp"
-                    android:layout_height="45dp"
-                    android:text="check out"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/arrive_time_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/quantum_deeppurple700"
+                    android:text="DALJA"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <CheckBox
                     android:id="@+id/payment_chk_box"
-                    android:layout_width="74dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/textview_border"
-                    android:text="Paid ?"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintStart_toEndOf="@+id/price_text"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_width="160dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/quantum_error_light"
+                    android:buttonTint="@android:color/white"
+                    android:text="PËRFUNDO"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/arrive_time_btn" />
 
                 <TextView
                     android:id="@+id/expected_arrival"
-                    android:layout_width="47dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/textview_border"
+                    android:layout_width="80dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
                     android:gravity="center"
                     android:text="13:55"
                     android:textColor="@android:color/black"
-                    app:layout_constraintStart_toEndOf="@+id/registration_plates_txt"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/registration_plates_txt" />
 
                 <TextView
                     android:id="@+id/price_text"
-                    android:layout_width="40dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/textview_border"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="5 $"
+                    android:text="0"
                     android:textColor="@android:color/black"
-                    app:layout_constraintStart_toEndOf="@+id/departure_time_btn"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/expected_arrival"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/registration_plates_txt"
                     android:layout_width="80dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/textview_border"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:text="01-732-AA"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="targat: "
+                    android:textStyle="italic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="koha "
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="çmimi:"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="€"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/price_text"
+                    app:layout_constraintTop_toBottomOf="@+id/expected_arrival"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </TableRow>
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

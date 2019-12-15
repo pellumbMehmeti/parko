@@ -3,14 +3,14 @@ package com.example.parko;
 public class ParkingGridPost extends  ParkingGridPostId {
 
     public String owner_id, location_info,profile_image_URI,parking_name;
-    public Integer capacity_number;
+    public Integer capacity_number,current_free_places;
     public Double latitude,longitude,price2hrs,price4hrs,price8hrs,pricemt8hrs;
 
     public ParkingGridPost() {
     }
 
     public ParkingGridPost(String owner_id, String location_info, String profile_image_URI, String parking_name, Integer capacity_number,
-                           Double latitude, Double longitude, Double price2hrs, Double price4hrs, Double price8hrs, Double pricemt8hrs) {
+                           Double latitude, Double longitude, Double price2hrs, Double price4hrs, Double price8hrs, Double pricemt8hrs,Integer current_free_places) {
         this.owner_id = owner_id;
         this.location_info = location_info;
         this.profile_image_URI = profile_image_URI;
@@ -22,6 +22,16 @@ public class ParkingGridPost extends  ParkingGridPostId {
         this.price4hrs = price4hrs;
         this.price8hrs = price8hrs;
         this.pricemt8hrs = pricemt8hrs;
+        this.current_free_places = current_free_places;
+
+    }
+
+    public Integer getCurrent_free_places() {
+        return current_free_places;
+    }
+
+    public void setCurrent_free_places(Integer current_free_places) {
+        this.current_free_places = current_free_places;
     }
 
     public String getOwner_id() {

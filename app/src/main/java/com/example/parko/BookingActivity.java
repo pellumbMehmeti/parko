@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.TimePicker;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,9 +40,9 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
     private static final String TAG = "MapActivity";
     private Button datePicker;
     private Button timePicker;
-    private TextView date_picked_txt;
-    private TextView time_picked_txt;
-    private EditText car_plates_edit_txt;
+    private TextInputEditText  date_picked_txt;
+    private TextInputEditText  time_picked_txt;
+    private TextInputEditText car_plates_edit_txt;
 
     private Button check_in;
     private Button check_out;
@@ -65,14 +67,15 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
         datePicker = (Button) findViewById(R.id.date_picker_btn);
         timePicker = (Button) findViewById(R.id.time_picker_btn);
 
-       car_plates_edit_txt = (EditText) findViewById(R.id.plate_number_edit);
+       car_plates_edit_txt = (TextInputEditText) findViewById(R.id.plate_number_edit);
+
 
 
         check_in = (Button) findViewById(R.id.button_checkin_time);
         check_out = (Button) findViewById(R.id.button_checkout_time);
-        finish_button = (Button) findViewById(R.id.finish_btn);
+    //    finish_button = (Button) findViewById(R.id.finish_btn);
 
-        calculatedPrice = (TextView) findViewById(R.id.calculated_price_text);
+     //   calculatedPrice = (TextView) findViewById(R.id.calculated_price_text);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -88,7 +91,7 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
 
         //Toast.makeText(BookingActivity.this, "parking id: " +testid, Toast.LENGTH_LONG).show();
 
-        finish_button.setOnClickListener(new View.OnClickListener() {
+/*        finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -98,7 +101,7 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
                 firebaseFirestore.collection("Parkings").document("FT0eoF2LjVgzRIh05CsA").update(testMap);
 
             }
-        });
+        });*/
 
         check_in.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,8 +228,8 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
 
 
 
-        date_picked_txt = (TextView) findViewById(R.id.book_date_text);
-        time_picked_txt = (TextView) findViewById(R.id.book_time_text);
+        date_picked_txt = (TextInputEditText ) findViewById(R.id.book_date_text);
+        time_picked_txt = (TextInputEditText ) findViewById(R.id.book_time_text);
 
         reserve_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,22 +269,32 @@ public class BookingActivity extends AppCompatActivity implements Serializable {
            // public String testtest;
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                String date_selected = date_picked_txt.getText().toString();
+                String time_selected = time_picked_txt.getText().toString();
+
                 String testtest= documentSnapshot.getString("owner_id");
                 String currentUserId = firebaseAuth.getUid();
 
                 String car_plates=car_plates_edit_txt.getText().toString();
 
                 Map <String, Object> reservationsMap = new HashMap<>();
-                reservationsMap.put("reservation_date", date_picked_txt.getText());
-                reservationsMap.put("reservation_time", time_picked_txt.getText());
+                reservationsMap.put("reservation_date", date_selected);
+                reservationsMap.put("reservation_time", time_selected);
                 reservationsMap.put("timestamp", FieldValue.serverTimestamp());
                 reservationsMap.put("registration_plates", car_plates);
                 reservationsMap.put("reserved_by", currentUserId);
                 reservationsMap.put("paid",false);
+                //reservationsMap.put("checkin_time",FieldValue.serverTimestamp());
+
                 reservationsMap.put("parkingId", testid);
                 reservationsMap.put("parking_owner_id",testtest );
+                reservationsMap.put("reservation_type","REMOTE");//NDRYSHIM
 
                 firebaseFirestore.collection("Reservations").add(reservationsMap);
+                Intent intent = new Intent(BookingActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
 
                 Log.w(TAG, "reservation_date:"+date_picked_txt.getText()+", reservation_time"+time_picked_txt.getText()+", timestamp"+FieldValue.serverTimestamp()+", registration_plates"+car_plates+", reserved_by"+currentUserId+", parkingId"+testtest);
 

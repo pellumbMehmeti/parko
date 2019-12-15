@@ -10,14 +10,14 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/bottomNav_account"
-        android:icon="@drawable/account"
-        android:title="Manage"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Menaxho"
         android:visible="true"
         app:showAsAction="always" />
     <item
         android:id="@+id/bottomNav_notifications"
         android:enabled="true"
-        android:icon="@drawable/notification"
+        android:icon="@android:drawable/ic_menu_recent_history"
         android:title="@string/bottom_notification_text"
         android:visible="true"
         app:showAsAction="always" />

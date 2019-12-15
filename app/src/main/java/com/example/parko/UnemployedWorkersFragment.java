@@ -1,26 +1,25 @@
 package com.example.parko;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -28,8 +27,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class employees_select extends AppCompatActivity {
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class UnemployedWorkersFragment extends Fragment {
     private RecyclerView empl_list_view;
     private List<EmployeePost> employeePosts;
 
@@ -43,31 +44,39 @@ public class employees_select extends AppCompatActivity {
 
     public static String TAG="MyActivity";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employees_select);
+    public UnemployedWorkersFragment() {
+        // Required empty public constructor
+    }
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        Bundle bundle = getArguments();
+
+        String parkingId = bundle.getString("parking_id");
+        View view = inflater.inflate(R.layout.activity_employees_select, container, false);
         employeePosts = new ArrayList<>();
-        empl_list_view = findViewById(R.id.list_of_employees);
- // updateDataBtn = findViewById(R.id.update_parking_btn);
+        empl_list_view = view.findViewById(R.id.list_of_employees);
+        // updateDataBtn = findViewById(R.id.update_parking_btn);
 //updateDataBtn.setVisibility(View.VISIBLE);
 
-mAuth=FirebaseAuth.getInstance();
+        mAuth=FirebaseAuth.getInstance();
 
 
         employees_recyclerAdapter = new Employees_RecyclerAdapter(employeePosts);
-        empl_list_view.setLayoutManager(new LinearLayoutManager(employees_select.this));
+        empl_list_view.setLayoutManager(new LinearLayoutManager(getContext()));
         empl_list_view.setAdapter(employees_recyclerAdapter);
 
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("parking_id");
+    //    Intent intent = view.getIntent();
+     //   String id = intent.getStringExtra("parking_id");
 
-        Log.d(TAG, "onCreate: PARKINGU I ZGJEDHUR ESHTE"+id);
+        //Log.d(TAG, "onCreate: PARKINGU I ZGJEDHUR ESHTE"+id);
 
-       Log.d(TAG, "onCreate: dokumenti"+mAuth.getCurrentUser().getUid());
+        Log.d(TAG, "onCreate: dokumenti"+mAuth.getCurrentUser().getUid());
 
-       String curUser = mAuth.getCurrentUser().getUid();
+        String curUser = mAuth.getCurrentUser().getUid();
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -115,7 +124,7 @@ mAuth=FirebaseAuth.getInstance();
             }
         });*/
 
-       firebaseFirestore.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -154,5 +163,8 @@ mAuth=FirebaseAuth.getInstance();
             }
         });
 
+
+        return view;
     }
+
 }

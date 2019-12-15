@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_search_btn"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/action_search_txt"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/action_acc_settings_btn"
         android:title="@string/action_acc_settings" />
     <item
@@ -17,6 +12,12 @@
         android:id="@+id/parking_addFs_btn"
         android:title="@string/parkingFs_add" />
     <item
+        android:id="@+id/onsite_reservation_item"
+        android:title="@string/onsite_reservation_item_hint" />
+    <item
         android:id="@+id/add_dlt_emps"
         android:title="@string/menu_add_empl" />
+    <item
+        android:id="@+id/stats_frag"
+        android:title="Statistikat" />
 </menu>

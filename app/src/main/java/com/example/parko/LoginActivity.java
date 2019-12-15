@@ -86,7 +86,7 @@ private FirebaseFirestore firebaseFirestore;
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
                                 if(mAuth.getCurrentUser().isEmailVerified()){
-                                    sendToMain();
+                                    manageLogin();
                                 }
                                 else {
                                     Toast.makeText(LoginActivity.this, "Please verify your email to continue!", Toast.LENGTH_LONG).show();
@@ -116,26 +116,47 @@ private FirebaseFirestore firebaseFirestore;
 
         if(currentUser!=null)
         {
-           sendToMain();
+            if(currentUser.isEmailVerified()==true){
+           manageLogin();}
     }
+    }
+    public void manageLogin(){
+        firebaseFirestore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    String user_type = task.getResult().getString("user_type");
+                    if(user_type == null){
+                        Intent intent = new Intent(LoginActivity.this,AccountSettingsActivity.class);
+                        intent.putExtra("role_not_set",true);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        sendToMain();
+                    }
+                }
+            }
+        });
+
     }
 
     private void sendToMain() {
 
 
 
-
+/*
         firebaseFirestore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 final String TAG = "MapActivity";
                 String userTYPE= documentSnapshot.getString("user_type");
                 Log.d(TAG, "onSuccess: USER TYPE"+userTYPE);
-/*
+*//*
                 SharedPreferences sp = getSharedPreferences(SHARED_PREF , Context.MODE_PRIVATE);
-                sp.edit().putString(USER_TYPE,userTYPE).apply();*/
+                sp.edit().putString(USER_TYPE,userTYPE).apply();*//*
             }
-        });
+        });*/
         Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(mainIntent);
         finish();

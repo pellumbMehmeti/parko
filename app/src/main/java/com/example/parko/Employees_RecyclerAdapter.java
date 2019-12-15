@@ -1,8 +1,11 @@
 package com.example.parko;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +52,7 @@ public class Employees_RecyclerAdapter extends RecyclerView.Adapter<Employees_Re
 
 
     private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth mAuth;
    // private Button addEmpButton;
 
     public Employees_RecyclerAdapter(List<EmployeePost> employeePosts){
@@ -64,7 +68,7 @@ public class Employees_RecyclerAdapter extends RecyclerView.Adapter<Employees_Re
         context = parent.getContext();
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-
+mAuth = FirebaseAuth.getInstance();
       //  addEmpButton =
 
 
@@ -136,12 +140,12 @@ public class Employees_RecyclerAdapter extends RecyclerView.Adapter<Employees_Re
 
                     String userImage = task.getResult().getString("user_profile_image");
                     String userid = task.getResult().getId();
-                    String punonNe= task.getResult().getString("works_at");
+//                    String punonNe= task.getResult().getString("works_at");
 
                     userID = user_id;
 
                     Log.d(TAG, "onComplete: emri userit"+userName+",ku user id eshteL:"+userid);
-                    Log.d(TAG, "onComplete: parkimgu i zgkedhur"+ParkingsGridRecyclerAdapter.stringtoPass+"\npunon ne: "+punonNe);
+  //                  Log.d(TAG, "onComplete: parkimgu i zgkedhur"+ParkingsGridRecyclerAdapter.stringtoPass+"\npunon ne: "+punonNe);
 
 
                     holder.setOwnerData(userName, userImage);
@@ -187,7 +191,7 @@ public class Employees_RecyclerAdapter extends RecyclerView.Adapter<Employees_Re
             mView=itemView;
 
             add_emp_btn = mView.findViewById(R.id.add_empl_btn);
-
+            delete_emp_btn = mView.findViewById(R.id.delete_empl_btn);
 
 
 
@@ -216,33 +220,85 @@ firebaseFirestore.collection("Users/").document(document).get().addOnFailureList
     @Override
     public void onSuccess(DocumentSnapshot documentSnapshot) {
         String works_at=documentSnapshot.getString("works_at");
-        Log.d(TAG, "onSuccess: "+documentSnapshot.getString("works_at")); ;
+        Log.d(TAG, "onSuccess Punetori punobn: "+documentSnapshot.getString("works_at")); ;
 
         if (works_at.equals(ParkingsGridRecyclerAdapter.stringtoPass)){
             Toast.makeText(context, "PUNETORI ESHTE I REGJISTRUAR NE PARKINGUN TUAJ",Toast.LENGTH_LONG).show();
-            add_emp_btn.setText("EKZISTON");
-            add_emp_btn.setBackgroundColor(Color.CYAN);
-            add_emp_btn.setEnabled(false);
+            AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+            alertDialog.setTitle("Informacion");
+            alertDialog.setMessage("Punetori eshte i regjistruar ne parkingun tuaj!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+           // add_emp_btn.setText("EKZISTON");
+            add_emp_btn.setBackgroundColor(Color.RED);
+
+           // add_emp_btn.setEnabled(false);
+        }
+        else if(!works_at.equals("0")){
+            AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+            alertDialog.setTitle("Informacion");
+            alertDialog.setMessage("Nuk mund ta regjistroni.Punetori eshte i regjistruar ne nje parking tjeter!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
         }
         else{
-            Map<String, Object> paymentMap = new HashMap<>();
-            paymentMap.put("works_at", ParkingsGridRecyclerAdapter.stringtoPass);
-            firebaseFirestore.collection("Users/").document(document).update(paymentMap).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
+           // if (works_at.equals(0)) {
+                Map<String, Object> paymentMap = new HashMap<>();
+                paymentMap.put("works_at", ParkingsGridRecyclerAdapter.stringtoPass);
+                paymentMap.put("fired",false);
+                firebaseFirestore.collection("Users/").document(document).update(paymentMap).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-                    Log.w(TAG, "Failure:"+e.getMessage());
+                        Log.w(TAG, "Failure:" + e.getMessage());
 
-                }
-            }).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "Successfully updated document: "+document);
-                    add_emp_btn.setEnabled(false);
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Successfully updated document: " + document);
+                   //     add_emp_btn.setEnabled(false);
+                        AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                        alertDialog.setTitle("Informacion");
+                        alertDialog.setMessage("Punetori u regjistrua me sukses!");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                }
-            });
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
 
+                    }
+                });
+
+            //}
+     /*       else {
+                AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                alertDialog.setTitle("Informacion");
+                alertDialog.setMessage("Nuk mund te regjistrohet punetori sepse eshte i regjistruar si punetor ne nje parking tjeter.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }*/
 
         }
     }
@@ -251,6 +307,91 @@ firebaseFirestore.collection("Users/").document(document).get().addOnFailureList
                     //    Log.d(TAG, "onClick: USERI I KLIKUAR: "+employee_name);
                 }
             });
+delete_emp_btn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        final String document = employeePosts.get(getAdapterPosition()).EmployeeId;
+        firebaseFirestore.collection("Users").document(document).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    String works_at= task.getResult().getString("works_at");
+                    Log.d(TAG, "onComplete.Delete Emp btn.User works at: "+works_at);
+                    String parkingu = ParkingsGridRecyclerAdapter.stringtoPass;
+                    Log.d(TAG, "onComplete: Delete Emp btn.ParkingsGridRecyclerAdapter.stringtoPass: "+parkingu );
+
+                    if (works_at.equals(parkingu)){
+                        AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                        alertDialog.setTitle("Informacion");
+                        alertDialog.setMessage("A jeni te sigurt qe doni ta fshini punetorin nga parkingu aktual.");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Map<String, Object> deleteMap = new HashMap<>();
+                                        deleteMap.put("works_at", "0");
+                                        deleteMap.put("fired",true);
+                                        firebaseFirestore.collection("Users").document(document).update(deleteMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+
+                                                    AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                                                    alertDialog.setTitle("Informacion");
+                                                    alertDialog.setMessage("Punetori u fshi nga parkingu.");
+                                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                                            new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
+                                                    alertDialog.show();
+                                                }
+                                                else{
+                                                    AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                                                    alertDialog.setTitle("Informacion");
+                                                    alertDialog.setMessage("Nuk mundi te fshihet punetori.");
+                                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                                            new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
+                                                    alertDialog.show();
+                                                }
+
+                                            }
+                                        });
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+
+
+                    }
+                    else {
+                        AlertDialog alertDialog = new AlertDialog.Builder(mView.getRootView().getContext()).create();
+                        alertDialog.setTitle("Informacion");
+                        alertDialog.setMessage("Punetori nuk mund te fshihet sepse nuk punon ne kete parking.");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+                    }
+                }
+                else {
+                    Log.d(TAG, "onComplete: Delete Emp btn.Error: "+task.getException());
+                }
+            }
+        });
+    }
+});
+
 
 /*
 

@@ -8,15 +8,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/single_parking_grid_card"
-        android:layout_width="401dp"
-        android:layout_height="wrap_content"
+        android:layout_width="402dp"
+        android:layout_height="140dp"
         android:layout_margin="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
+            android:layout_width="392dp"
+            android:layout_height="129dp"
             android:layout_margin="5dp">
 
             <ImageView
@@ -25,19 +26,17 @@
                 android:layout_height="22dp"
                 app:layout_constraintBottom_toTopOf="@+id/free_places_grid"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.041"
+                app:layout_constraintHorizontal_bias="0.043"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/parking_grid_name"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/location_icon" />
 
             <TextView
                 android:id="@+id/free_places_grid"
                 android:layout_width="100dp"
                 android:layout_height="22dp"
-                android:text="Free places:"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.051"
+                android:layout_marginStart="16dp"
+                android:text="Vende të lira:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/street_adr" />
 
@@ -46,33 +45,92 @@
                 android:layout_width="59dp"
                 android:layout_height="22dp"
                 android:text="10"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.346"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toEndOf="@+id/free_places_grid"
                 app:layout_constraintTop_toBottomOf="@+id/street_adr" />
 
             <TextView
                 android:id="@+id/parking_grid_name"
                 android:layout_width="159dp"
                 android:layout_height="22dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="Parking Name"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/street_adr"
                 android:layout_width="129dp"
-                android:layout_height="22dp"
-                android:layout_marginLeft="8dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/parking_grid_name" />
+
+            <Button
+                android:id="@+id/update_parking_btn"
+                android:layout_width="165dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
+                android:text="Përditeso te dhënat"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.692"
+                app:layout_constraintStart_toEndOf="@+id/parking_grid_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_mg_empls"
+                android:layout_width="165dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Menaxhimi i punëtorëve"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.698"
+                app:layout_constraintStart_toEndOf="@+id/street_adr"
+                app:layout_constraintTop_toBottomOf="@+id/update_parking_btn" />
+
+            <TextView
+                android:id="@+id/total_places_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/textView31"
+                app:layout_constraintTop_toBottomOf="@+id/nr_places_grid" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Kapaciteti:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/free_places_grid" />
+
+            <Button
+                android:id="@+id/btn_mngs_res"
+                android:layout_width="165dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/quantum_googgreen"
+                android:text="Menaxhimi i rezervimeve"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.692"
+                app:layout_constraintStart_toEndOf="@+id/nr_places_grid"
+                app:layout_constraintTop_toBottomOf="@+id/btn_mg_empls" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

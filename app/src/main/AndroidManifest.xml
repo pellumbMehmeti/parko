@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".employees_select" />
+        <activity android:name=".employees_select"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -26,10 +27,12 @@
         -->
         <activity
             android:name=".MapsParkings"
-            android:label="@string/title_activity_maps_parkings" />
+            android:label="@string/title_activity_maps_parkings"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ParkingLocation"
-            android:label="@string/title_activity_parking_location" />
+            android:label="@string/title_activity_parking_location"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,16 +41,16 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".BookingActivity" />
-        <activity android:name=".registerEmployeesActivity" />
-        <activity android:name=".ParkingInformationActivity" />
-        <activity android:name=".AccountSettingsActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".SignUp" />
+        <activity android:name=".BookingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".registerEmployeesActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ParkingInformationActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AccountSettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ForgotPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SignUp" android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +59,7 @@
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:theme="@style/Base.Theme.AppCompat"  android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -63,14 +63,14 @@
 
             <TextView
                 android:id="@+id/parking_total_places"
-                android:layout_width="120dp"
-                android:layout_height="21dp"
-                android:layout_marginStart="8dp"
-                android:text="Totalplaces"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/parking_owner_image"
-                app:layout_constraintTop_toBottomOf="@+id/parking_name" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/home_free_places" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/parking_owner_image"
@@ -93,12 +93,43 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/colorAccent"
-                android:text="BOOK"
+                android:text="REZERVO"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/parking_address"
                 app:layout_constraintTop_toBottomOf="@+id/parking_photo" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="16dp"
+                android:text="Vende të lira:"
+                app:layout_constraintStart_toEndOf="@+id/parking_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="164dp"
+                android:layout_marginTop="8dp"
+                android:text="Kapaciteti:"
+                app:layout_constraintStart_toEndOf="@+id/parking_owner_image"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/home_free_places"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

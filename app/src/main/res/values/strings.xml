@@ -13,8 +13,8 @@
     <string name="location_hint">Click on button to go to maps</string>
     <string name="capacity_hint">Parking Capacity</string>
     <string name="bottom_home_text">Home</string>
-    <string name="bottom_account_text">Account</string>
-    <string name="bottom_notification_text">Notifications</string>
+    <string name="bottom_account_text">Menaxhimi</string>
+    <string name="bottom_notification_text">Rezervimet</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -33,6 +33,7 @@
     <string-array name="user_types" textColor="#FFFFFF">
         <item>Parking Owner</item>
         <item>Ordinary User</item>
+        <item>Parking Worker</item><!--e shtume 16/11/19-->
     </string-array>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="tab_text_1">Tab 1</string>
@@ -41,5 +42,19 @@
     <string name="lista_help">LISTA</string>
     <string name="parkingFs_add">Add parking</string>
     <string name="menu_add_empl">Shto/Fshi punetorët</string>
+    <string name="onsite_plates_hint">Shkruaj targat e vetures</string>
+    <string name="onsite_date_time" />
+    <string name="onsite_time_date">Kliko butonin për kohën e hyrjes</string>
+    <string name="onsite_title">REZERVIMI NE VENDPARKIM</string>
+    <string name="onsite_hint_info">1. Shkruaj targat e veturës, 2.Kliko mbi buton për ta regjistruar kohën e hyrjes, 3.Konfirmo rezervimin</string>
+    <string name="onsite_reservation_item_hint">Rezervimi ne vend</string>
+    <string name="booking_plates_hint">Shkruaj targat e vetures</string>
+    <string name="helper_booking">Shkruani sakte targat e vetures</string>
+    <string name="targat_booking">Targat e makines</string>
+    <string name="hint_tabelat">Tabelat e vetures</string>
+    <string name="hint_date_bk">Zgjedhe daten</string>
+    <string name="helper_date">Zgjedhe daten</string>
+    <string name="time_hint_bk">Zgjedhe kohen</string>
+    <string name="adresa_sakte">Adresa e saktë</string>
 
 </resources>

@@ -1,27 +1,29 @@
 package com.example.parko;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class ManagementPost extends ManagementPostId{
 
     public String registration_plates;
+    public String reservation_time;
+    public  Date checkin_time;
 
-    public ManagementPost(String registration_plates, String reservation_time, Timestamp check_in_time, Timestamp check_out_time) {
+    public ManagementPost(String registration_plates, String reservation_time,  Date checkin_time, Timestamp check_out_time) {
         this.registration_plates = registration_plates;
         this.reservation_time = reservation_time;
-        this.check_in_time = check_in_time;
+        this.checkin_time = checkin_time;
         this.check_out_time = check_out_time;
     }
 
-    public String reservation_time;
-    public Timestamp check_in_time;
 
-    public Timestamp getCheck_in_time() {
-        return check_in_time;
+
+    public   Date getCheck_in_time() {
+        return checkin_time;
     }
 
-    public void setCheck_in_time(Timestamp check_in_time) {
-        this.check_in_time = check_in_time;
+    public void setCheck_in_time( Date check_in_time) {
+        this.checkin_time = checkin_time;
     }
 
     public Timestamp getCheck_out_time() {

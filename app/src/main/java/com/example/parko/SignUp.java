@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
@@ -28,6 +33,7 @@ public class SignUp extends AppCompatActivity {
     private ProgressBar signup_progessBar;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore firebaseFirestore;
 
 
 
@@ -44,6 +50,7 @@ public class SignUp extends AppCompatActivity {
         signup_progessBar = (ProgressBar) findViewById(R.id.signup_progress);
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         signup_login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +62,7 @@ public class SignUp extends AppCompatActivity {
         signup_create_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = signup_email_field.getText().toString();
+                final String email = signup_email_field.getText().toString();
                 String password = signup_password_field.getText().toString();
                 String confirm_password = signup_password_confirm_field.getText().toString();
 
@@ -75,7 +82,28 @@ public class SignUp extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
                                                 //sendToMain();//me ndrru me te qu ne login
+                                                String user_id=mAuth.getCurrentUser().getUid();
+                                                Map<String, Object> postMap = new HashMap<>();
+
+                                                postMap.put("user_type", null);
+                                                postMap.put("user_id", user_id);
                                                 Toast.makeText(SignUp.this, "Registered Successfully. Please check your email for verification!", Toast.LENGTH_LONG).show();
+                                               firebaseFirestore.collection("Users").document(user_id).set(postMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                   @Override
+                                                   public void onComplete(@NonNull Task<Void> task) {
+                                                       final String TAG = "MapActivity";
+                                                       if(task.isSuccessful()){
+                                                           Log.d(TAG, "onComplete: Me sukses u be regjistrimi");
+                                                       }
+                                                       else
+                                                       {
+                                                           Log.d(TAG, "onComplete: Nuk u be me sukses regjistrimi");
+                                                       }
+                                                   }
+                                               });
+                                                signup_email_field.setText(null);
+                                                signup_password_field.setText(null);
+                                                signup_password_confirm_field.setText(null);
 
                                             }
                                             else {
@@ -118,11 +146,11 @@ public class SignUp extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+ /*       FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null && currentUser.isEmailVerified())
         {
             sendToMain();
-        }
+        }*/
     }
 
     private void sendToMain() {

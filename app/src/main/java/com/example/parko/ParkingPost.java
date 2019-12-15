@@ -2,15 +2,17 @@ package com.example.parko;
 
 public class ParkingPost extends  ParkingPostId {
 
-    public String owner_id, location_info,profile_image_URI,parking_name;
+    public String owner_id, location_info,profile_image_URI,parking_name,parking_image_URI;
     public Integer capacity_number;
-    public Double latitude,longitude,price2hrs,price4hrs,price8hrs,pricemt8hrs;
 
-    public ParkingPost(String owner_id, String location_info, String profile_image_URI, String parking_name, Integer capacity_number,
-                       Double latitude, Double longitude, Double price2hrs, Double price4hrs, Double price8hrs, Double pricemt8hrs) {
+    public Double latitude,longitude,price2hrs,price4hrs,price8hrs,pricemt8hrs,current_free_places;
+
+    public ParkingPost(String owner_id, String location_info, String profile_image_URI, String parking_name, Integer capacity_number,Double current_free_places,
+                       Double latitude, Double longitude, Double price2hrs, Double price4hrs, Double price8hrs, Double pricemt8hrs,String parking_image_URI) {
         this.owner_id = owner_id;
         this.location_info = location_info;
         this.profile_image_URI = profile_image_URI;
+        this.parking_image_URI = parking_image_URI;
         this.parking_name = parking_name;
         this.capacity_number = capacity_number;
         this.latitude = latitude;
@@ -19,8 +21,25 @@ public class ParkingPost extends  ParkingPostId {
         this.price4hrs = price4hrs;
         this.price8hrs = price8hrs;
         this.pricemt8hrs = pricemt8hrs;
+        this.current_free_places = current_free_places;
     }
     public ParkingPost(){}
+
+    public String getParking_image_URI() {
+        return parking_image_URI;
+    }
+
+    public Double getCurrent_free_places() {
+        return current_free_places;
+    }
+
+    public void setCurrent_free_places(Double current_free_places) {
+        this.current_free_places = current_free_places;
+    }
+
+    public void setParking_image_URI(String parking_image_URI) {
+        this.parking_image_URI = parking_image_URI;
+    }
 
     public String getOwner_id() {
         return owner_id;

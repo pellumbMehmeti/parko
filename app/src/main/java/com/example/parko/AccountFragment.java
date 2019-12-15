@@ -74,7 +74,7 @@ public class AccountFragment extends Fragment implements ParkingsGridRecyclerAda
         parkingsListGrid = new ArrayList<>();
         parking_grid_list_view = view.findViewById(R.id.parkings_grid_view);
 
-        gridLayoutManager = new GridLayoutManager(getContext(),2);
+        gridLayoutManager = new GridLayoutManager(getContext(),1);
 
         parkingsGridRecyclerAdapter = new ParkingsGridRecyclerAdapter(parkingsListGrid, this,0);
         parking_grid_list_view.setLayoutManager(gridLayoutManager);
@@ -92,9 +92,8 @@ public class AccountFragment extends Fragment implements ParkingsGridRecyclerAda
                 String works_at = documentSnapshot.getString("works_at");
                 String roli = documentSnapshot.getString("user_type");
                 Log.d(TAG, "onSuccess: shfrytezuesi i tanishem punon ne:"+works_at+"| roli:" +roli);
-                if (!(roli.equals("Parking Worker"))){
-
-                    firebaseFirestore.collection("Parkings").document(works_at).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                if ((roli.equals("Parking Worker"))){
+                  firebaseFirestore.collection("Parkings").document(works_at).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                         @Override
                         public void onEvent(@androidx.annotation.Nullable DocumentSnapshot documentSnapshot, @androidx.annotation.Nullable FirebaseFirestoreException e) {
                             String parking_id = documentSnapshot.getId();
@@ -107,7 +106,8 @@ public class AccountFragment extends Fragment implements ParkingsGridRecyclerAda
                         }
                     });
 
-                }else {
+
+                }else if(((roli.equals("Parking Owner")))){
                     firebaseFirestore.collection("Parkings").whereEqualTo("owner_id", FirebaseAuth.getInstance().getCurrentUser().getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
