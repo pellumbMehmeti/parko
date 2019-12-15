@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.parko">
+    package="com.parkoKS.parko"
+    android:versionCode="2">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -60,10 +61,14 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"  android:screenOrientation="portrait"/>
+<!--
+        android:name="com.google.android.geo.API_KEY"
+-->
 
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key"
+            />
     </application>
 
 </manifest>
